@@ -57,13 +57,19 @@ jobs:
       - node/install:
           node-version: '14.15' 
       - eb/setup
-      - aws-cli/setup
+      - aws-cli/setup:
+            aws-access-key-id: AWS_ACCESS_KEY_ID
+            aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+            aws-region: AWS_DEFAULT_REGION
       - checkout
       - run:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
           command: |
             npm run deploy
+          
+          
+          
             
 workflows:
   udagram:
