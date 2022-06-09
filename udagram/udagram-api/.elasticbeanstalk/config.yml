@@ -1,7 +1,6 @@
 branch-defaults:
   default:
-    environment: null
-    group_suffix: null
+    environment: uda-api
 global:
   application_name: udauda
   branch: null
