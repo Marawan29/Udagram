@@ -7,5 +7,5 @@ http://udauda.s3-website-us-east-1.amazonaws.com
 [Dependencies](./documenntation/dependencies.md)
 ## Infrastructre Doc
 [Infrastructure](./documenntation/infrastructure.md)
-## Pipeline Docs
+## Pipeline Doc
 [Pipeline](./documenntation/pipeline.md)
