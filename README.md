@@ -3,9 +3,9 @@ this is udacity third project in advanced fullstack web development nanodegreee
 ## Working hosted website link
 http://udauda.s3-website-us-east-1.amazonaws.com
 
-## Project Dependencies Doc
+## Project Dependencies Docs
 [Dependencies](./documenntation/dependencies.md)
-## Infrastructre Doc
+## Infrastructre Docs
 [Infrastructure](./documenntation/infrastructure.md)
-## Pipeline Doc
+## Pipeline Docs
 [Pipeline](./documenntation/pipeline.md)
