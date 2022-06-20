@@ -1,6 +1,6 @@
 branch-defaults:
   default:
-    environment: uda-api
+    environment: Udauda-env
 global:
   application_name: udauda
   branch: null
@@ -15,3 +15,5 @@ global:
   repository: null
   sc: null
   workspace_type: Application
+deploy:
+  artifact: www/Archive.zip
