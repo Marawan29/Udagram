@@ -10,19 +10,19 @@ executors:
   my-executor1:
     docker:
       - image: "cimg/node:14.15"
-    mkdir: /hope
-    working_directory: /hope
+    working_directory: /tmp
   my-executor2:
     docker:
       - image: "cimg/base:stable"
-    working_directory: /hope
+    working_directory: /tmp
 jobs:
   build:
     executor: my-executor1
     steps:
       # install node and checkout code
       - node/install:
-          node-version: '14.15'         
+          node-version: '14.15'        
+      - run: ls
       - checkout
       # Use root level package.json to install dependencies in the frontend app
       - run:
