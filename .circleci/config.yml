@@ -10,11 +10,12 @@ executors:
   my-executor1:
     docker:
       - image: "cimg/node:14.15"
-    working_directory: /tmp
+    mkdir: /hope
+    working_directory: /hope
   my-executor2:
     docker:
       - image: "cimg/base:stable"
-    working_directory: /tmp
+    working_directory: /hope
 jobs:
   build:
     executor: my-executor1
@@ -22,6 +23,7 @@ jobs:
       # install node and checkout code
       - node/install:
           node-version: '14.15'         
+      - checkout
       # Use root level package.json to install dependencies in the frontend app
       - run:
           name: Install Front-End Dependencies
@@ -78,6 +80,7 @@ jobs:
             aws-access-key-id: AWS_ACCESS_KEY_ID
             aws-secret-access-key: AWS_SECRET_ACCESS_KEY
             aws-region: AWS_DEFAULT_REGION
+      - checkout
       - run:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
