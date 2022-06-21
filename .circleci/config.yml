@@ -10,7 +10,7 @@ jobs:
     docker:
       # the base image can run most needed actions with orbs
       - image: "cimg/node:14.15"
-    working_directory: /
+    working_directory: ./
     steps:
       # install node and checkout code
       - node/install:
@@ -62,7 +62,7 @@ jobs:
     docker:
       - image: "cimg/base:stable"
       # more setup needed for aws, node, elastic beanstalk
-    working_directory: /tmp
+    working_directory: ./
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
