@@ -10,13 +10,8 @@ executors:
   my-executor1:
     docker:
       - image: "cimg/node:14.15"
-    working_directory: /tmp
-  my-executor2:
-    docker:
-      - image: "cimg/base:stable"
-    working_directory: /tmp
 jobs:
-  build:
+  build-and-deploy:
     executor: my-executor1
     steps:
       # install node and checkout code
@@ -57,30 +52,14 @@ jobs:
           command: |
             echo "TODO: Build the backend API"
             npm run api:build
-      - run: mkdir -p workspace
-      -  persist_to_workspace:
-          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
-          # taken to be the root directory of the workspace.
-          root: workspace
-          # Must be relative path from root
-          paths:
-            - udagram
-
-  # deploy step will run only after manual approval
-  deploy:
-    executor: my-executor2
-    steps:
-      - attach_workspace:
-          # Must be absolute path or relative path from working_directory
-          at: workspace
-      - node/install:
-          node-version: '14.15' 
+      # TODO: configure elastic bean stack
       - eb/setup
       - aws-cli/setup:
             aws-access-key-id: AWS_ACCESS_KEY_ID
             aws-secret-access-key: AWS_SECRET_ACCESS_KEY
             aws-region: AWS_DEFAULT_REGION
       - checkout
+      # Deploy the application
       - run:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
@@ -93,15 +72,4 @@ jobs:
 workflows:
   udagram:
     jobs:
-      - build
-      - hold:
-          filters:
-            branches:
-              only:
-                - master
-          type: approval
-          requires:
-            - build
-      - deploy:
-          requires:
-            - hold
+      - build-and-deploy
