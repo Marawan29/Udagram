@@ -5,12 +5,19 @@ orbs:
   eb: circleci/aws-elastic-beanstalk@2.0.1
   aws-cli: circleci/aws-cli@3.1.1
   # different jobs are calles later in the workflows sections
+
+executors:
+  my-executor1:
+    docker:
+      - image: "cimg/node:14.15"
+    working_directory: /tmp
+  my-executor2:
+    docker:
+      - image: "cimg/base:stable"
+    working_directory: /tmp
 jobs:
   build:
-    docker:
-      # the base image can run most needed actions with orbs
-      - image: "cimg/node:14.15"
-    working_directory: ./
+    executor: my-executor1
     steps:
       # install node and checkout code
       - node/install:
@@ -60,14 +67,11 @@ jobs:
 
   # deploy step will run only after manual approval
   deploy:
-    docker:
-      - image: "cimg/base:stable"
-      # more setup needed for aws, node, elastic beanstalk
-    working_directory: ./
+    executor: my-executor2
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: /workspace
+          at: /tmp/workspace
       - node/install:
           node-version: '14.15' 
       - eb/setup
