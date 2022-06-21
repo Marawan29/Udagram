@@ -61,7 +61,7 @@ jobs:
           root: workspace
           # Must be relative path from root
           paths:
-            - udagram
+            - udagram/
 
   # deploy step will run only after manual approval
   deploy:
