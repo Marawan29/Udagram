@@ -61,6 +61,7 @@ jobs:
       - run:
           name: Setup eb environment variables
           command: |
+            cd ./udagram/udagram-api
             eb setenv PORT=$PORT PORT_DB=$PORT_DB POSTGRES_HOST=$POSTGRES_HOST POSTGRES_USERNAME=$POSTGRES_USERNAME POTSTGRES_PASSWORD=$POTSTGRES_PASSWORD POSTGRES_DB=$POSTGRES_DB URL=$URL JWT_SECRET=$JWT_SECRET AWS_PROFILE=$AWS_PROFILE AWS_BUCKET=$AWS_BUCKET AWS_REGION=$AWS_REGION
       # Deploy the application
       - run:
